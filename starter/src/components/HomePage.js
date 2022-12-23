@@ -4,7 +4,6 @@ import SearchButton from "./SearchButton";
 import * as bookApi from "../BooksAPI";
 const HomePage = () => {
   const [books, setBooks] = useState([]);
-  // shelves names is written in the API
   const shelves = [
     { title: "Currently Reading", shelfName: "currentlyReading" },
     { title: "Want to Read", shelfName: "wantToRead" },
@@ -13,9 +12,9 @@ const HomePage = () => {
 
   useEffect(() => {
     bookApi.getAll().then((data) => {
-      console.log(data);
+      setBooks(data);
     });
-  });
+  }, []);
 
   return (
     <div className="list-books">
@@ -23,12 +22,21 @@ const HomePage = () => {
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-
         <div className="list-books-content">
-          <div>{<Bookshelf />}</div>
+          <div>
+            {shelves.map((shelf) => (
+              <Bookshelf
+                title={shelf.title}
+                books={
+                  books &&
+                  books.filter((book) => book && book.shelf === shelf.shelfName)
+                }
+                setBooks={setBooks}
+              />
+            ))}
+          </div>
         </div>
       </div>
-
       <SearchButton />
     </div>
   );
