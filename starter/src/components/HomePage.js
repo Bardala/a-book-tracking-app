@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Bookshelf from "./BookShelf";
 import SearchButton from "./SearchButton";
 import * as bookApi from "../BooksAPI";
+
 const HomePage = () => {
   const [books, setBooks] = useState([]);
   const shelves = [
@@ -37,6 +38,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       <SearchButton />
     </div>
   );

@@ -1,15 +1,10 @@
 import { useState } from "react";
 
 const SearchPage = () => {
-  const [showSearchPage, setShowSearchpage] = useState(false);
-
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a
-          className="close-search"
-          onClick={() => setShowSearchpage(!showSearchPage)}
-        >
+        <a className="close-search" href="/">
           Close
         </a>
         <div className="search-books-input-wrapper">
