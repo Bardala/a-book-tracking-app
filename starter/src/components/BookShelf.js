@@ -14,9 +14,9 @@ const Bookshelf = () => {
 
             <div className="bookshelf-books">
               <ol className="books-grid">
-                <li>
+                {/* <li>
                   <Book />
-                </li>
+                </li> */}
 
                 {/* <li>
                   <div className="book">

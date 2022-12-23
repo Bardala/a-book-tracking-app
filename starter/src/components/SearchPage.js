@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const SearchPage = () => {
+  const [showSearchPage, setShowSearchpage] = useState(false);
+
   return (
     <div className="search-books">
       <div className="search-books-bar">
