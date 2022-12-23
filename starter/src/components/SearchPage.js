@@ -1,4 +1,4 @@
-const SearcPage = ({ state }) => {
+const SearchPage = () => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -19,4 +19,4 @@ const SearcPage = ({ state }) => {
   );
 };
 
-export default SearcPage;
+export default SearchPage;

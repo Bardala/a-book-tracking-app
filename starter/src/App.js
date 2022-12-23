@@ -1,5 +1,4 @@
 import "./App.css";
-import { useState, useEffect } from "react";
 import * as BooksAPI from "./BooksAPI";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SearchPage from "./components/SearchPage";
@@ -10,9 +9,9 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <SearchPage />
+          <Route path="/search" element={<SearchPage />} />
 
-          <HomePage />
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </div>
