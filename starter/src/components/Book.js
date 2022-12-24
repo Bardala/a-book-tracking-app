@@ -52,5 +52,5 @@ Book.propTypes = {
   author: PropTypes.array,
   imgURL: PropTypes.string,
   bookShelf: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
 };

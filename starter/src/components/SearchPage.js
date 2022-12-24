@@ -8,16 +8,16 @@ const SearchPage = (props) => {
   const [val, setVal] = useState("");
 
   useEffect(() => {
-    if (!val.error && val) {
-      BooksAPI.search(val)
-        .then((res) => {
-          console.log(res);
-          setBooks(res);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      setBooks([]);
-    }
+    BooksAPI.search(val)
+      .then((res) => {
+        if (val === "" || res?.length === 0) {
+          return setBooks([]);
+        }
+        console.log(res);
+        setBooks(res);
+      })
+      .catch((err) => console.log(err));
+
     console.log(books);
   }, [val]);
 
@@ -32,7 +32,10 @@ const SearchPage = (props) => {
             type="text"
             placeholder="Search by title, author, or ISBN"
             value={val}
-            onChange={(e) => setVal(e.target.value)}
+            onChange={(e) => {
+              e.preventDefault();
+              setVal(e.target.value);
+            }}
           />
         </div>
       </div>
