@@ -1,19 +1,8 @@
 import Book from "./Book";
-import * as BooksAPI from "../BooksAPI";
 import PropTypes from "prop-types";
 
 const Bookshelf = (props) => {
-  const { books, title, setBooks } = props;
-
-  const handleChange = (shelf, book) => {
-    BooksAPI.update(book, shelf)
-      .then((updatedShelves) => {
-        console.log(updatedShelves);
-        console.log(BooksAPI.getAll());
-        return BooksAPI.getAll(); // return {promise} has books
-      })
-      .then((returnedBooks) => setBooks(returnedBooks));
-  };
+  const { books, title, handleChange } = props;
 
   return (
     <div>
@@ -29,7 +18,6 @@ const Bookshelf = (props) => {
                     book={book}
                     title={book.title}
                     author={book.authors}
-                    setBooks={setBooks}
                     bookShelf={book.shelf}
                     imgURL={book.imageLinks && book.imageLinks.smallThumbnail}
                     handleShelfChange={handleChange}
@@ -48,5 +36,5 @@ export default Bookshelf;
 Bookshelf.propTypes = {
   books: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

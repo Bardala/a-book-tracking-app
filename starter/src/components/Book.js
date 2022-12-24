@@ -1,4 +1,3 @@
-import * as BooksAPI from "../BooksAPI";
 import PropTypes from "prop-types";
 
 const Book = (props) => {
@@ -30,13 +29,11 @@ const Book = (props) => {
             <option value="none" disabled>
               Move to...
             </option>
-
             {shelves.map((shelf) => (
               <option key={shelf.id} value={shelf.shelfName}>
                 {shelf.title}
               </option>
             ))}
-
             <option value="none">None</option>
           </select>
         </div>

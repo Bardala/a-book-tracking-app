@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Bookshelf from "./BookShelf";
 import SearchButton from "./SearchButton";
-import * as bookApi from "../BooksAPI";
+import * as BooksAPI from "../BooksAPI";
 
 const HomePage = () => {
   const [books, setBooks] = useState([]); // books is arr
@@ -12,10 +12,20 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
-    bookApi.getAll().then((data) => {
+    BooksAPI.getAll().then((data) => {
       setBooks(data);
     });
   }, []);
+
+  const handleChange = (shelf, book) => {
+    BooksAPI.update(book, shelf)
+      .then((updatedShelves) => {
+        console.log(updatedShelves);
+        console.log(BooksAPI.getAll());
+        return BooksAPI.getAll(); // return {promise} has books
+      })
+      .then((returnedBooks) => setBooks(returnedBooks));
+  };
 
   return (
     <div className="list-books">
@@ -32,6 +42,7 @@ const HomePage = () => {
                   books &&
                   books.filter((book) => book && book.shelf === shelf.shelfName)
                 }
+                handleChange={handleChange}
                 setBooks={setBooks}
               />
             ))}
