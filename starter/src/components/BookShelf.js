@@ -2,12 +2,12 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 const Bookshelf = (props) => {
-  const { books, title, handleChange } = props;
+  const { books, shelfTitle, handleChange } = props;
 
   return (
     <div>
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{title}</h2>
+        <h2 className="bookshelf-title">{shelfTitle}</h2>
 
         <div className="bookshelf-books">
           <ol className="books-grid">
@@ -16,11 +16,11 @@ const Bookshelf = (props) => {
                 <li key={key}>
                   <Book
                     book={book}
-                    title={book.title}
+                    bookTitle={book.title}
                     author={book.authors}
                     bookShelf={book.shelf}
                     imgURL={book.imageLinks && book.imageLinks.smallThumbnail}
-                    handleShelfChange={handleChange}
+                    handleChange={handleChange}
                   />
                 </li>
               ))}
@@ -35,6 +35,6 @@ export default Bookshelf;
 
 Bookshelf.propTypes = {
   books: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
+  shelfTitle: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

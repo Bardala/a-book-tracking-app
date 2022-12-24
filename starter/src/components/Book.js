@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Book = (props) => {
-  const { book, title, author, imgURL, bookShelf, handleShelfChange } = props;
+  const { book, bookTitle, author, imgURL, bookShelf, handleChange } = props;
 
   const shelves = [
     { id: 1, title: "Currently Reading", shelfName: "currentlyReading" },
@@ -23,7 +23,7 @@ const Book = (props) => {
 
         <div className="book-shelf-changer">
           <select
-            onChange={(e) => handleShelfChange(e.target.value, book)}
+            onChange={(e) => handleChange(e.target.value, book)}
             value={bookShelf}
           >
             <option value="none" disabled>
@@ -38,8 +38,8 @@ const Book = (props) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{title}</div>
-      <div className="book-authors">{author.join(", ")}</div>
+      <div className="book-title">{bookTitle}</div>
+      <div className="book-authors">{author && author.join(", ")}</div>
     </div>
   );
 };
@@ -48,9 +48,9 @@ export default Book;
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.array.isRequired,
+  bookTitle: PropTypes.string.isRequired,
+  author: PropTypes.array,
   imgURL: PropTypes.string,
-  bookShelf: PropTypes.string.isRequired,
-  handleShelfChange: PropTypes.func.isRequired,
+  bookShelf: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
 };

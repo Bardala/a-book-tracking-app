@@ -1,28 +1,9 @@
-import { useEffect, useState } from "react";
 import Bookshelf from "./BookShelf";
 import SearchButton from "./SearchButton";
-import * as BooksAPI from "../BooksAPI";
+import PropTypes from "prop-types";
 
-const HomePage = () => {
-  const [books, setBooks] = useState([]); // books is arr
-  const shelves = [
-    { title: "Currently Reading", shelfName: "currentlyReading" },
-    { title: "Want to Read", shelfName: "wantToRead" },
-    { title: "Read", shelfName: "read" },
-  ];
-
-  useEffect(() => {
-    BooksAPI.getAll().then((data) => {
-      setBooks(data);
-    });
-  }, []);
-
-  const handleChange = (shelf, book) => {
-    book.shelf = shelf;
-    BooksAPI.update(book, shelf).then(() => {
-      setBooks([...books.filter((b) => b.id !== book.id), book]);
-    });
-  };
+const HomePage = (props) => {
+  const { shelves, books, setBooks, handleChange } = props;
 
   return (
     <div className="list-books">
@@ -35,7 +16,7 @@ const HomePage = () => {
             {shelves.map((shelf, key) => (
               <Bookshelf
                 key={key}
-                title={shelf.title}
+                shelfTitle={shelf.title}
                 books={
                   books &&
                   books.filter((book) => book && book.shelf === shelf.shelfName)
@@ -54,3 +35,10 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+HomePage.propTypes = {
+  shelves: PropTypes.array.isRequired,
+  books: PropTypes.array,
+  setBooks: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
