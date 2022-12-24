@@ -2,19 +2,13 @@ import * as BooksAPI from "../BooksAPI";
 import PropTypes from "prop-types";
 
 const Book = (props) => {
-  const { book, title, author, setBooks, imgURL, bookShelf } = props;
+  const { book, title, author, imgURL, bookShelf, handleShelfChange } = props;
 
   const shelves = [
     { id: 1, title: "Currently Reading", shelfName: "currentlyReading" },
     { id: 2, title: "Want to Read", shelfName: "wantToRead" },
     { id: 3, title: "Read", shelfName: "read" },
   ];
-
-  const handleShelfChange = (shelf) => {
-    BooksAPI.update(book, shelf)
-      .then(() => BooksAPI.getAll())
-      .then((updateShelf) => setBooks(updateShelf));
-  };
 
   return (
     <div className="book">
@@ -30,7 +24,7 @@ const Book = (props) => {
 
         <div className="book-shelf-changer">
           <select
-            onChange={(e) => handleShelfChange(e.target.value)}
+            onChange={(e) => handleShelfChange(e.target.value, book)}
             value={bookShelf}
           >
             <option value="none" disabled>
@@ -59,7 +53,7 @@ Book.propTypes = {
   book: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
   imgURL: PropTypes.string,
   bookShelf: PropTypes.string.isRequired,
+  handleShelfChange: PropTypes.func.isRequired,
 };

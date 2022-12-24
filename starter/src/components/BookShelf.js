@@ -5,12 +5,15 @@ import PropTypes from "prop-types";
 const Bookshelf = (props) => {
   const { books, title, setBooks } = props;
 
-  // const handleChange = (book, shelf) => {
-  //   book.shelf = shelf;
-  //   BooksAPI.update(book, shelf).then(() => {
-  //     setBooks([...books.filter((b) => b.id !== book.id), book]);
-  //   });
-  // };
+  const handleChange = (shelf, book) => {
+    BooksAPI.update(book, shelf)
+      .then((updatedShelves) => {
+        console.log(updatedShelves);
+        console.log(BooksAPI.getAll());
+        return BooksAPI.getAll(); // return {promise} has books
+      })
+      .then((returnedBooks) => setBooks(returnedBooks));
+  };
 
   return (
     <div>
@@ -29,7 +32,7 @@ const Bookshelf = (props) => {
                     setBooks={setBooks}
                     bookShelf={book.shelf}
                     imgURL={book.imageLinks && book.imageLinks.smallThumbnail}
-                    // handleShelfChange={handleChange}
+                    handleShelfChange={handleChange}
                   />
                 </li>
               ))}
