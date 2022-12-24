@@ -24,22 +24,6 @@ const HomePage = () => {
     });
   };
 
-  /** Triggering the BooksAPI.getAll method after shelf change is not the best approach for performance reasons for the latest book update.
-   *  That is the job of the setState method.
-   *  When there is a change in state, the component should re-render the updated change.
-   *  Better to use the filter method to filter out the book and then concat method to append it to the end of the list.
-   * */
-
-  // const handleChange = (shelf, book) => {
-  //   BooksAPI.update(book, shelf)
-  //     .then((updatedShelves) => {
-  //       console.log(updatedShelves);
-  //       console.log(BooksAPI.getAll());
-  //       return BooksAPI.getAll(); // return {promise} has books
-  //     })
-  //     .then((returnedBooks) => setBooks(returnedBooks));
-  // };
-
   return (
     <div className="list-books">
       <div className="book-shelf">
@@ -48,8 +32,9 @@ const HomePage = () => {
         </div>
         <div className="list-books-content">
           <div>
-            {shelves.map((shelf) => (
+            {shelves.map((shelf, key) => (
               <Bookshelf
+                key={key}
                 title={shelf.title}
                 books={
                   books &&

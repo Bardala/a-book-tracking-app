@@ -12,8 +12,8 @@ const Bookshelf = (props) => {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books &&
-              books.map((book) => (
-                <li>
+              books.map((book, key) => (
+                <li key={key}>
                   <Book
                     book={book}
                     title={book.title}
