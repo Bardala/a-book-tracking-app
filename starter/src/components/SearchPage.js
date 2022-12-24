@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const SearchPage = () => {
   return (
     <div className="search-books">

@@ -1,14 +1,19 @@
-import * as API from "../BooksAPI";
+import * as BooksAPI from "../BooksAPI";
+import PropTypes from "prop-types";
 
 const Book = (props) => {
   const { book, title, author, setBooks, imgURL, bookShelf } = props;
 
-  const handleShelfChange = (e) => {
-    if (e.target.value !== "move") {
-      API.update(book, e.target.value)
-        .then(() => API.getAll())
-        .then((updateShelf) => setBooks(updateShelf));
-    }
+  const shelves = [
+    { id: 1, title: "Currently Reading", shelfName: "currentlyReading" },
+    { id: 2, title: "Want to Read", shelfName: "wantToRead" },
+    { id: 3, title: "Read", shelfName: "read" },
+  ];
+
+  const handleShelfChange = (shelf) => {
+    BooksAPI.update(book, shelf)
+      .then(() => BooksAPI.getAll())
+      .then((updateShelf) => setBooks(updateShelf));
   };
 
   return (
@@ -25,23 +30,36 @@ const Book = (props) => {
 
         <div className="book-shelf-changer">
           <select
-            onChange={(e) => handleShelfChange(e)}
-            defaultValue={bookShelf}
+            onChange={(e) => handleShelfChange(e.target.value)}
+            value={bookShelf}
           >
             <option value="none" disabled>
               Move to...
             </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
+
+            {shelves.map((shelf) => (
+              <option key={shelf.id} value={shelf.shelfName}>
+                {shelf.title}
+              </option>
+            ))}
+
             <option value="none">None</option>
           </select>
         </div>
       </div>
       <div className="book-title">{title}</div>
-      <div className="book-authors">{author}</div>
+      <div className="book-authors">{author.join(", ")}</div>
     </div>
   );
 };
 
 export default Book;
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
+  imgURL: PropTypes.string,
+  bookShelf: PropTypes.string.isRequired,
+};

@@ -1,7 +1,16 @@
 import Book from "./Book";
+import * as BooksAPI from "../BooksAPI";
+import PropTypes from "prop-types";
 
 const Bookshelf = (props) => {
   const { books, title, setBooks } = props;
+
+  // const handleChange = (book, shelf) => {
+  //   book.shelf = shelf;
+  //   BooksAPI.update(book, shelf).then(() => {
+  //     setBooks([...books.filter((b) => b.id !== book.id), book]);
+  //   });
+  // };
 
   return (
     <div>
@@ -20,6 +29,7 @@ const Bookshelf = (props) => {
                     setBooks={setBooks}
                     bookShelf={book.shelf}
                     imgURL={book.imageLinks && book.imageLinks.smallThumbnail}
+                    // handleShelfChange={handleChange}
                   />
                 </li>
               ))}
@@ -31,3 +41,9 @@ const Bookshelf = (props) => {
 };
 
 export default Bookshelf;
+
+Bookshelf.propTypes = {
+  books: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  setBooks: PropTypes.func.isRequired,
+};

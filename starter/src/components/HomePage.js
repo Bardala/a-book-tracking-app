@@ -4,7 +4,7 @@ import SearchButton from "./SearchButton";
 import * as bookApi from "../BooksAPI";
 
 const HomePage = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]); // books is arr
   const shelves = [
     { title: "Currently Reading", shelfName: "currentlyReading" },
     { title: "Want to Read", shelfName: "wantToRead" },
