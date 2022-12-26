@@ -5,21 +5,27 @@ import PropTypes from "prop-types";
 
 const SearchPage = (props) => {
   const { handleChange, books, setBooks } = props;
-  const [val, setVal] = useState("");
+  const [input, setInput] = useState("");
+  const [state, setState] = useState(true);
+
+  const clearShelves = () => {};
 
   useEffect(() => {
-    BooksAPI.search(val)
+    BooksAPI.search(input)
       .then((res) => {
-        if (val === "" || res?.length === 0) {
+        if (!input || res.error) {
+          console.log("Input does not exist");
+          setState(true);
           return setBooks([]);
         }
-        console.log(res);
+        setState(false);
+        console.log("res:", res);
         setBooks(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("SearchError:", err));
 
     console.log(books);
-  }, [val]);
+  }, [input]);
 
   return (
     <div className="search-books">
@@ -31,19 +37,19 @@ const SearchPage = (props) => {
           <input
             type="text"
             placeholder="Search by title, author, or ISBN"
-            value={val}
+            value={input}
             onChange={(e) => {
               e.preventDefault();
-              setVal(e.target.value);
+              setInput(e.target.value);
             }}
           />
         </div>
       </div>
-      <div className="search-books-results">
-        <ol className="books-grid">
-          {books &&
-            val &&
-            books.map((book, key) => (
+
+      {books.length > 0 && (
+        <div className="search-books-results">
+          <ol className="books-grid">
+            {books.map((book, key) => (
               <li key={key}>
                 <Book
                   book={book}
@@ -52,12 +58,14 @@ const SearchPage = (props) => {
                   bookShelf={book.shelf}
                   imgURL={book.imageLinks && book.imageLinks.smallThumbnail}
                   handleChange={handleChange}
-                  isSearching
+                  isSearching={true}
                 />
               </li>
             ))}
-        </ol>
-      </div>
+          </ol>
+        </div>
+      )}
+      {state && <div className="doesnot-exist"></div>}
     </div>
   );
 };
@@ -67,5 +75,5 @@ export default SearchPage;
 SearchPage.propTypes = {
   handleChange: PropTypes.func.isRequired,
   books: PropTypes.array,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func,
 };

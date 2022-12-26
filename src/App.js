@@ -14,7 +14,6 @@ function App() {
   ];
 
   useEffect(() => {
-    // Fire on every render
     BooksAPI.getAll().then((data) => {
       setBooks(data);
     });
