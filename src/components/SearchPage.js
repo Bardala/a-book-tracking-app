@@ -4,27 +4,30 @@ import * as BooksAPI from "../BooksAPI";
 import PropTypes from "prop-types";
 
 const SearchPage = (props) => {
-  const { handleChange, books, setBooks } = props;
+  const { handleChange, books } = props;
   const [input, setInput] = useState("");
-  const [state, setState] = useState(true);
+  const [searchedBooks, setSearchedBooks] = useState([]);
 
-  const clearShelves = () => {};
+  const setShelves = (searchedBooks, allBooks) => {
+    return searchedBooks.map((book) => {
+      for (let b of allBooks) {
+        if (b.id === book.id) return { ...book, shelf: b.shelf };
+      }
+      return { ...book, shelf: "none" };
+    });
+  };
 
   useEffect(() => {
-    BooksAPI.search(input)
-      .then((res) => {
-        if (!input || res.error) {
-          console.log("Input does not exist");
-          setState(true);
-          return setBooks([]);
-        }
-        setState(false);
-        console.log("res:", res);
-        setBooks(res);
-      })
-      .catch((err) => console.log("SearchError:", err));
-
-    console.log(books);
+    if (input.length !== 0) {
+      BooksAPI.search(input)
+        .then((searchedBooks) => {
+          if (!input || searchedBooks.error) {
+            return setSearchedBooks([]);
+          }
+          setSearchedBooks(setShelves(searchedBooks, books));
+        })
+        .catch((err) => console.log("SearchError:", err));
+    } else setSearchedBooks([]);
   }, [input]);
 
   return (
@@ -46,10 +49,10 @@ const SearchPage = (props) => {
         </div>
       </div>
 
-      {books.length > 0 && (
+      {input && (
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map((book, key) => (
+            {searchedBooks.map((book, key) => (
               <li key={key}>
                 <Book
                   book={book}
@@ -65,7 +68,6 @@ const SearchPage = (props) => {
           </ol>
         </div>
       )}
-      {state && <div className="doesnot-exist"></div>}
     </div>
   );
 };
@@ -73,7 +75,6 @@ const SearchPage = (props) => {
 export default SearchPage;
 
 SearchPage.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   books: PropTypes.array,
-  setBooks: PropTypes.func,
 };

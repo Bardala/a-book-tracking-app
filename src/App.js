@@ -32,13 +32,7 @@ function App() {
         <Routes>
           <Route
             path="/search"
-            element={
-              <SearchPage
-                books={books}
-                setBooks={setBooks}
-                handleChange={handleChange}
-              />
-            }
+            element={<SearchPage books={books} handleChange={handleChange} />}
           />
 
           <Route
