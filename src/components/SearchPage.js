@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Book from "./Book";
 import * as BooksAPI from "../BooksAPI";
 import PropTypes from "prop-types";
@@ -33,9 +34,9 @@ const SearchPage = (props) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a className="close-search" href="/">
+        <NavLink className="close-search" to="/">
           Close
-        </a>
+        </NavLink>
         <div className="search-books-input-wrapper">
           <input
             type="text"
