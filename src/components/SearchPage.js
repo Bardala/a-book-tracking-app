@@ -76,6 +76,6 @@ const SearchPage = (props) => {
 export default SearchPage;
 
 SearchPage.propTypes = {
-  handleChange: PropTypes.func,
-  books: PropTypes.array,
+  handleChange: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired,
 };

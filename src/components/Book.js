@@ -67,6 +67,6 @@ Book.propTypes = {
   author: PropTypes.array,
   imgURL: PropTypes.string,
   bookShelf: PropTypes.string,
-  handleChange: PropTypes.func,
+  handleChange: PropTypes.func.isRequired,
   isSearching: PropTypes.bool,
 };

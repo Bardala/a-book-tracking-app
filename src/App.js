@@ -4,6 +4,7 @@ import SearchPage from "./components/SearchPage";
 import HomePage from "./components/HomePage";
 import { useEffect, useState } from "react";
 import * as BooksAPI from "./BooksAPI";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -41,11 +42,12 @@ function App() {
               <HomePage
                 shelves={shelves}
                 books={books}
-                setBooks={setBooks}
                 handleChange={handleChange}
               />
             }
           />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

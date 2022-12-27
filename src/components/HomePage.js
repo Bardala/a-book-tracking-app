@@ -3,7 +3,7 @@ import SearchButton from "./SearchButton";
 import PropTypes from "prop-types";
 
 const HomePage = (props) => {
-  const { shelves, books, setBooks, handleChange } = props;
+  const { shelves, books, handleChange } = props;
 
   return (
     <div className="list-books">
@@ -22,7 +22,6 @@ const HomePage = (props) => {
                   books.filter((book) => book && book.shelf === shelf.shelfName)
                 }
                 handleChange={handleChange}
-                setBooks={setBooks}
               />
             ))}
           </div>
@@ -39,6 +38,5 @@ export default HomePage;
 HomePage.propTypes = {
   shelves: PropTypes.array.isRequired,
   books: PropTypes.array,
-  setBooks: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
