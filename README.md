@@ -2,11 +2,18 @@
 
 ## Main Page
 
+<img src="./Captures/Home.png">
+
 - The main page shows 3 shelves for books. Each book is with its title and all of its authors.
 - The main page has a control that allows users to move books between shelves. The control should be tied to each book instance. The state of the book should not be changed when the page is refreshed.
+
+<img src="./Captures/Control.png">
 - When the browser is refreshed, the same information is displayed on the page.
 
 ## Search Page
+
+<img src="./Captures/Search.png">
+<img src="./Captures/Add.png">
 
 - The search page has a search input field.
 - As the user types into the search field, books that match the query are displayed on the page, along with their titles and authors.
@@ -14,6 +21,7 @@
 - Invalid queries are handled and prior search results are not shown.
 - The search works correctly when a book does not have a thumbnail or an author. (To test this, try searching for "poetry" and "biography").
 - The user is able to search for multiple words, such as “artificial intelligence.”
+  <img src="./Captures/Multiple Words.png">
 
 ## Routing
 
