@@ -29,7 +29,7 @@ const SearchPage = (props) => {
         })
         .catch((err) => console.log("SearchError:", err));
     } else setSearchedBooks([]);
-  }, [input]);
+  }, [books, input]);
 
   return (
     <div className="search-books">
