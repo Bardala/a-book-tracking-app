@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <BrowserRouter basename="/a-book-tracking-app">
         <Routes>
           <Route
             path="/search"
