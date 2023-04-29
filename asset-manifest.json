@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/A-Book-Tracking-App/static/css/main.0d14cb3c.css",
-    "main.js": "/A-Book-Tracking-App/static/js/main.40be4b7c.js",
-    "index.html": "/A-Book-Tracking-App/index.html",
-    "static/media/arrow-back.svg": "/A-Book-Tracking-App/static/media/arrow-back.cd079cab42defead9875.svg",
-    "static/media/add.svg": "/A-Book-Tracking-App/static/media/add.1b5d9b6afb5557f7992c.svg",
-    "static/media/arrow-drop-down.svg": "/A-Book-Tracking-App/static/media/arrow-drop-down.4378492a3a09dbfc31ff.svg",
-    "main.0d14cb3c.css.map": "/A-Book-Tracking-App/static/css/main.0d14cb3c.css.map",
-    "main.40be4b7c.js.map": "/A-Book-Tracking-App/static/js/main.40be4b7c.js.map"
+    "main.css": "/a-book-tracking-app/static/css/main.b60a5797.css",
+    "main.js": "/a-book-tracking-app/static/js/main.40be4b7c.js",
+    "index.html": "/a-book-tracking-app/index.html",
+    "static/media/arrow-back.svg": "/a-book-tracking-app/static/media/arrow-back.cd079cab42defead9875.svg",
+    "static/media/add.svg": "/a-book-tracking-app/static/media/add.1b5d9b6afb5557f7992c.svg",
+    "static/media/arrow-drop-down.svg": "/a-book-tracking-app/static/media/arrow-drop-down.4378492a3a09dbfc31ff.svg",
+    "main.b60a5797.css.map": "/a-book-tracking-app/static/css/main.b60a5797.css.map",
+    "main.40be4b7c.js.map": "/a-book-tracking-app/static/js/main.40be4b7c.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d14cb3c.css",
+    "static/css/main.b60a5797.css",
     "static/js/main.40be4b7c.js"
   ]
 }
